@@ -17,6 +17,7 @@ ysp = 0;
 moveSpd = 5;
 jumpSpd = -5;
 grav = .25;
+moveDir = 1
 
 enum PLAYER_STATE {
 	NORMAL_ATTACK,

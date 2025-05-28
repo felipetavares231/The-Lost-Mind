@@ -8,14 +8,19 @@ if (shake_time > 0) {
     shake_offset_y = 0;
 }
 
-// Follow player
 if (instance_exists(obj_player)) {
-    var target_x = obj_player.x - camera_get_view_width(global.camera) / 2;
-    var target_y = obj_player.y - camera_get_view_height(global.camera) / 2;
+    
+    var room_w = room_width;
+    var room_h = room_height;
+    var cam_w = camera_get_view_width(global.camera);
+    var cam_h = camera_get_view_height(global.camera);
 
-    camera_set_view_pos(global.camera, target_x + shake_offset_x, target_y + shake_offset_y);
+    
+    var target_x = obj_player.x - cam_w / 2 + shake_offset_x;
+    var target_y = obj_player.y - cam_h / 2 + shake_offset_y;
+
+    target_x = clamp(target_x, 0, room_w - cam_w);
+    target_y = clamp(target_y, 0, room_h - cam_h);
+
+    camera_set_view_pos(global.camera, target_x, target_y);
 }
-
-view_xview[0] += random_range(-5, 5);
-view_yview[0] += random_range(-5, 5);
-

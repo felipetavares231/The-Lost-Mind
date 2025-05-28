@@ -2,11 +2,11 @@
 
 var rightKey = keyboard_check(ord("D"));
 var leftKey = keyboard_check(ord("A"));
-var jumpKeyPressed = keyboard_check_pressed(vk_space);
+var jumpKeyPressed = keyboard_check_pressed(ord("W"));
 
 
 //movement and collision
-xsp = (rightKey - leftKey) * moveSpd;
+xsp = (rightKey - leftKey) * moveSpd
 ysp += grav;
 
 if(jumpKeyPressed && place_meeting(x, y+1, obj_ground)){
@@ -42,9 +42,10 @@ x += xsp;
 y += ysp;
 
 if (leftKey) {
+    xsp = -moveSpd
     image_xscale = -spriteSize;
-} 
-if (rightKey) {
+}  else if (rightKey) {
+    xsp = moveSpd
     image_xscale = spriteSize;
 }
 

@@ -1,4 +1,3 @@
-// Create a camera
 var cam_width = 640;
 var cam_height = 360;
 
