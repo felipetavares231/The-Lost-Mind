@@ -13,7 +13,10 @@ showHPBar = false;
 alarm[1] = 180; //alarm to disable hp bar
 
 xsp = 0;
-ysp = 0; 
+ysp = 0;
+moveSpd = 5;
+jumpSpd = -5;
+grav = .25;
 
 enum PLAYER_STATE {
 	NORMAL_ATTACK,

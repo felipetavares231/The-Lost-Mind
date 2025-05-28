@@ -1,11 +1,50 @@
 // ========== MOVEMENT INPUT ==========
-var move_x = 0;
-if (keyboard_check(ord("A"))) {
-    move_x = -1;
+
+var rightKey = keyboard_check(ord("D"));
+var leftKey = keyboard_check(ord("A"));
+var jumpKeyPressed = keyboard_check_pressed(vk_space);
+
+
+//movement and collision
+xsp = (rightKey - leftKey) * moveSpd;
+ysp += grav;
+
+if(jumpKeyPressed && place_meeting(x, y+1, obj_ground)){
+    ysp = jumpSpd;
+}
+
+//horizontal collision
+if (place_meeting(x + xsp, y, obj_ground)){
+    
+    var _pixelCheck = sign(xsp);
+    
+    show_debug_message(xsp)
+
+    while (!(place_meeting(x + _pixelCheck, y, obj_ground))){
+        x += _pixelCheck
+    }
+    
+    xsp = 0;
+}
+
+if(place_meeting(x + xsp, y + ysp, obj_ground)){
+    var _pixelCheck = sign(ysp);
+    
+    while(!place_meeting(x + xsp, y + _pixelCheck, obj_ground)){
+        y += _pixelCheck;
+    }
+    
+    ysp = 0;
+    
+}
+
+x += xsp;
+y += ysp;
+
+if (leftKey) {
     image_xscale = -spriteSize;
 } 
-if (keyboard_check(ord("D"))) {
-    move_x = 1;
+if (rightKey) {
     image_xscale = spriteSize;
 }
 
@@ -39,24 +78,7 @@ else if (state == PLAYER_STATE.STAGGER) {
     Player_Stagger();
 	showHPBar = true;
 }
-else if (move_x != 0) {
-    state = PLAYER_STATE.RUNNING;
-    xsp = move_x * 3;
-    sprite_index = spr_knight_running;
-}
 else if (state != PLAYER_STATE.STAGGER) {
     state = PLAYER_STATE.IDLE;
     sprite_index = spr_knight_idle;
 }
-
-// ========== GRAVITY & JUMP ==========
-ysp += 0.1;
-
-if (place_meeting(x, y + 1, obj_ground)) {
-    ysp = 0;
-    if (keyboard_check(ord("W"))) {
-        ysp = -2;
-    }
-}
-
-move_and_collide(xsp, ysp, obj_ground);
