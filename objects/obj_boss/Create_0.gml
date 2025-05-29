@@ -11,6 +11,7 @@ image_yscale = spriteSize
 
 xsp = 0
 ysp = 0
+grav = .25
 
 enum BOSS_STATE {
 	DASHING,
@@ -21,6 +22,7 @@ enum BOSS_STATE {
 	DEAD,
 	STAGGER,
 	CHARGE,
+    AREA_ATTACK,
 }
 
 state = BOSS_STATE.IDLE;
@@ -44,5 +46,7 @@ magneticPullInitialized = false;
 staggerInitialized = false;
 
 chargeAttackInitialized = false;
+
+areaAttackInitialized = false;
 
 knockback = 30;

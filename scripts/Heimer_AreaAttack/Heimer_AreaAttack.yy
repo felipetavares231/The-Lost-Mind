@@ -1,0 +1,13 @@
+{
+  "$GMScript":"v1",
+  "%Name":"Heimer_AreaAttack",
+  "isCompatibility":false,
+  "isDnD":false,
+  "name":"Heimer_AreaAttack",
+  "parent":{
+    "name":"Scripts",
+    "path":"folders/Scripts.yy",
+  },
+  "resourceType":"GMScript",
+  "resourceVersion":"2.0",
+}

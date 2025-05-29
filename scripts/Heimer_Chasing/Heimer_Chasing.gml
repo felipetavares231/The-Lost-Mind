@@ -17,7 +17,7 @@ function Heimer_Chasing() {
         return;
     }
 	
-	choice = irandom(1)
+	choice = irandom(2)
 
     var dist = point_distance(x, y, target.x, target.y);
     var dir = point_direction(x, y, target.x, target.y);
@@ -38,8 +38,10 @@ function Heimer_Chasing() {
 
         if(choice == 0){
             state = BOSS_STATE.DASHING
-        }else{
+        }else if (choice == 1){
             state = BOSS_STATE.MAGNETIC_PULL
+        }else{
+            state = BOSS_STATE.AREA_ATTACK
         }
 
         chasingInitialized = false;

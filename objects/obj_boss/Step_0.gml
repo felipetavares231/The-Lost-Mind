@@ -7,13 +7,14 @@ case BOSS_STATE.NORMAL_ATTACK: Heimer_NormalAttack() break;
 case BOSS_STATE.MAGNETIC_PULL: Heimer_MagneticPull() break;
 case BOSS_STATE.CHARGE: Heimer_Charge() break;
 case BOSS_STATE.DASHING: Heimer_Dashing(spriteSize) break;
+case BOSS_STATE.AREA_ATTACK: Heimer_AreaAttack() break;
 };
 
 if(hp <= 0){
 	state = BOSS_STATE.DEAD
 }
 
-ysp += 0.1
+ysp += grav
 xsp = 0
 
 if (keyboard_check(ord("L"))){
