@@ -26,6 +26,7 @@ enum PLAYER_STATE {
 	STAGGER,
 	DODGING,
 	HEALING,
+    DEAD,
 }
 
 state = PLAYER_STATE.IDLE
@@ -41,6 +42,8 @@ potionStrength = 5;
 dodgeInitialized = false;
 canDodge = false;
 dodgeCooldown = 60;
+
+deathInitialized = false;
 
 damage = function(_damage, _knockback = 10) {
 	if(state != PLAYER_STATE.DODGING){

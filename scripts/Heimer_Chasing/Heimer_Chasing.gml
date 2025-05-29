@@ -10,12 +10,6 @@ function Heimer_Chasing() {
     }
 
     target = obj_player
-    if (!instance_exists(target)) {
-        state = BOSS_STATE.IDLE;
-        target = noone;
-        chasingInitialized = false;
-        return;
-    }
 	
 	choice = irandom(2)
 
