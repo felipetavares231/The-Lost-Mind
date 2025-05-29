@@ -14,13 +14,13 @@ if(jumpKeyPressed && place_meeting(x, y+1, obj_ground)){
 }
 
 //horizontal collision
-if (place_meeting(x + xsp, y, obj_ground)){
+if (place_meeting(x + xsp, y, obj_wall)){
     
     var _pixelCheck = sign(xsp);
     
     show_debug_message(xsp)
 
-    while (!(place_meeting(x + _pixelCheck, y, obj_ground))){
+    while (!(place_meeting(x + _pixelCheck, y, obj_wall))){
         x += _pixelCheck
     }
     
@@ -41,12 +41,16 @@ if(place_meeting(x + xsp, y + ysp, obj_ground)){
 x += xsp;
 y += ysp;
 
-if (leftKey) {
-    xsp = -moveSpd
+if (leftKey && state != PLAYER_STATE.DODGING) {
+    xsp = -moveSpd;
     image_xscale = -spriteSize;
-}  else if (rightKey) {
-    xsp = moveSpd
+    state = PLAYER_STATE.RUNNING;
+}  else if (rightKey && state != PLAYER_STATE.DODGING) {
+    xsp = moveSpd;
     image_xscale = spriteSize;
+    state = PLAYER_STATE.RUNNING;
+} else if(state == PLAYER_STATE.RUNNING && leftKey == 0 && rightKey == 0){
+    state = PLAYER_STATE.IDLE
 }
 
 // ========== DODGE INPUT ==========
@@ -66,6 +70,7 @@ if (keyboard_check(ord("R")) && healingPotions > 0) {
 // ========== SET STATE BASED ON INPUT ==========
 if (state == PLAYER_STATE.DODGING) {
     // Dodge logic will override movement
+    show_debug_message("dodge state")
     Player_Dodge();
 }
 else if(state == PLAYER_STATE.HEALING){
@@ -79,7 +84,9 @@ else if (state == PLAYER_STATE.STAGGER) {
     Player_Stagger();
 	showHPBar = true;
 }
-else if (state != PLAYER_STATE.STAGGER) {
-    state = PLAYER_STATE.IDLE;
+else if (state == PLAYER_STATE.RUNNING) {
+    sprite_index = spr_knight_running;
+}
+else if (state == PLAYER_STATE.IDLE) {
     sprite_index = spr_knight_idle;
 }

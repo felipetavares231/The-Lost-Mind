@@ -10,6 +10,7 @@ function Heimer_Charge(){
     }
 
     if (attackTimer > 0) {
+        
 
         // Only check for collision once, during the "attack frame"
         if (attackTimer == attackFrame) {
@@ -17,12 +18,8 @@ function Heimer_Charge(){
                 with (obj_player) {
 					if(state != PLAYER_STATE.DODGING){
 						hp -= (80 + other.knockback);
-						state = PLAYER_STATE.STAGGER
-						if(image_xscale > 0){
-							x -= 250
-						}else{
-							x += 250
-						}
+						state = PLAYER_STATE.STAGGER;
+                        chargeKnockback();
 					}
                 }
 				
@@ -40,5 +37,24 @@ function Heimer_Charge(){
         state = BOSS_STATE.IDLE;
         image_index = 0;
 		knockback = 30;
+    }
+}
+
+chargeKnockback = function chargeKnockback() {
+    var distanceToWall = distance_to_object(obj_wall)
+    
+    if(image_xscale > 0){
+        if(distanceToWall >= 250){
+            x -= 250
+        }else{
+            x -= distanceToWall
+        }
+    }else{
+        if(distanceToWall >= 250){
+            x += 250    
+        }else{
+            x += distanceToWall
+        }
+        
     }
 }

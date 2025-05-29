@@ -43,6 +43,7 @@
     {"id":{"name":"obj_heimer_area_attack","path":"objects/obj_heimer_area_attack/obj_heimer_area_attack.yy",},},
     {"id":{"name":"obj_kingslayer","path":"objects/obj_kingslayer/obj_kingslayer.yy",},},
     {"id":{"name":"obj_player","path":"objects/obj_player/obj_player.yy",},},
+    {"id":{"name":"obj_wall","path":"objects/obj_wall/obj_wall.yy",},},
     {"id":{"name":"Room2","path":"rooms/Room2/Room2.yy",},},
     {"id":{"name":"Heimer_AreaAttack","path":"scripts/Heimer_AreaAttack/Heimer_AreaAttack.yy",},},
     {"id":{"name":"Heimer_Charge","path":"scripts/Heimer_Charge/Heimer_Charge.yy",},},
