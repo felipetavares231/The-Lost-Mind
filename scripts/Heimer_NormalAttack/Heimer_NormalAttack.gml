@@ -14,7 +14,7 @@ function Heimer_NormalAttack() {
         // Only check for collision once, during the "attack frame"
         if (attackTimer == attackFrame) {
             if (place_meeting(x + image_xscale * 16, y, obj_player)) {
-                obj_player.damage(40, obj_boss.knockback)
+                obj_player.damage(40+obj_boss.knockback, obj_boss.knockback)
 				
 				with (obj_camera){
 					shake_time = 12

@@ -8,10 +8,17 @@ if(hp <= 0){
         room_restart()
     }
     
+    
 }else{
     var rightKey = keyboard_check(ord("D"));
     var leftKey = keyboard_check(ord("A"));
     var jumpKeyPressed = keyboard_check_pressed(ord("W"));
+    
+    //TEMPORARY DEBUGGER KEY
+    
+    if(keyboard_check(vk_f3)){
+        instance_create_depth(x, y, 0, obj_damageIndicator)
+    }
     
     
     //movement and collision

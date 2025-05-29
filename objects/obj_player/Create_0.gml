@@ -47,13 +47,27 @@ deathInitialized = false;
 
 damage = function(_damage, _knockback = 10) {
 	if(state != PLAYER_STATE.DODGING){
-		hp -= (20 + _knockback);
+		hp -= _damage;
 		state = PLAYER_STATE.STAGGER
-		if(image_xscale > 0){
-			x -= _knockback
-		}else{
-			x += _knockback
-		}
+        var distanceToWall = distance_to_object(obj_wall)
+    
+        if(image_xscale > 0){
+            if(distanceToWall >= _knockback){
+                x -= _knockback
+            }else{
+                x -= distanceToWall
+            }
+        }else{
+            if(distanceToWall >= _knockback){
+                x += _knockback
+            }else{
+                x += distanceToWall
+            }
+            
+        }
+        
+        var damageIndicator = instance_create_depth(x, y, -1, obj_damageIndicator)
+        damageIndicator.damage = _damage
 	}
 }
 

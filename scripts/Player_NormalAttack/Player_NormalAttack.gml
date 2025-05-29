@@ -19,17 +19,8 @@ function Player_NormalAttack(){
         // Only check for collision once, during the "attack frame"
         if (attackTimer == attackFrame) {
             if (place_meeting(x + image_xscale * 16, y, obj_boss)) {
-                with (obj_boss) {
-                    hp -= 10;
-					if(random(100) < 5){
-						state = BOSS_STATE.STAGGER
-						with(obj_camera){
-							shake_time = 30
-							shake_magnitude = 30
-						}
-					}
-					
-                }
+                
+                obj_boss.damage(100)
 				
 				with(obj_camera){
 					shake_time = 10

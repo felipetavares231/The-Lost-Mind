@@ -17,9 +17,7 @@ function Heimer_Charge(){
             if (place_meeting(x + image_xscale * 16, y, obj_player)) {
                 with (obj_player) {
 					if(state != PLAYER_STATE.DODGING){
-						hp -= (80 + other.knockback);
-						state = PLAYER_STATE.STAGGER;
-                        chargeKnockback();
+						obj_player.damage(100, 250)
 					}
                 }
 				
@@ -37,24 +35,5 @@ function Heimer_Charge(){
         state = BOSS_STATE.IDLE;
         image_index = 0;
 		knockback = 30;
-    }
-}
-
-chargeKnockback = function chargeKnockback() {
-    var distanceToWall = distance_to_object(obj_wall)
-    
-    if(image_xscale > 0){
-        if(distanceToWall >= 250){
-            x -= 250
-        }else{
-            x -= distanceToWall
-        }
-    }else{
-        if(distanceToWall >= 250){
-            x += 250    
-        }else{
-            x += distanceToWall
-        }
-        
     }
 }
