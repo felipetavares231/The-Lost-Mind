@@ -40,3 +40,19 @@ draw_sprite_part(
     staminafill_width, staminabar_height,
     margin_x, 50
 );
+
+//---------------------HEALTH POTINOS0-0000-----------
+
+var bottom_y = display_get_gui_height() - 80;
+
+if(healingPotionCount > 0){
+    draw_sprite_ext(spr_healthpotionGUI, 0, margin_x, bottom_y, 2, 2, 0, c_white, 1);
+}else{
+    draw_sprite_ext(spr_emptyhealthpotionGUI, 0, margin_x, bottom_y, 2, 2, 0, c_white, 1);
+}
+draw_text_transformed(margin_x+50, bottom_y+60, $"X{obj_player.healingPotionCount}", 0.5, 0.5, 0);
+
+
+
+
+

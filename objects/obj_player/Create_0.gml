@@ -1,4 +1,4 @@
-display_set_gui_size(500, 500)
+display_set_gui_size(640, 360)
 
 spriteSize = 2
 
@@ -11,9 +11,9 @@ displayed_hp = 300; //for smooth drain
 bar_max_width = max_hp * 0.6;  // 0.6 pixels per HP max, adjust as needed// max width of the HP bar on screen (pixels)
 bar_height = 10;     // height of the HP bar (pixels)
 
-max_stamina = 600;
+max_stamina = 300;
 stamina = max_stamina;
-displayed_stamina = 600; //for smooth drain
+displayed_stamina = max_stamina; //for smooth drain
 staminaDecreaseFactor = 100;
 staminaIncreaseFactor = 50;
 staminaCooldown = 30;
@@ -45,7 +45,7 @@ normalAttackInitialized = false;
 staggerInitialized = false;
 
 healingInitialized = false;
-healingPotions = 5;
+healingPotionCount = 5;
 potionStrength = 5;
 
 dodgeInitialized = false;

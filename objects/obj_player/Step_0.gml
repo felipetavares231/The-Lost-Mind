@@ -77,7 +77,7 @@ if(hp <= 0){
         state = PLAYER_STATE.NORMAL_ATTACK;
     }
     
-    if (keyboard_check(ord("R")) && healingPotions > 0) {
+    if (keyboard_check(ord("R")) && healingPotionCount > 0) {
         state = PLAYER_STATE.HEALING;
     }
     
@@ -89,14 +89,12 @@ if(hp <= 0){
     }
     else if(state == PLAYER_STATE.HEALING){
         Player_Healing();
-        showHPBar = true;
     }
     else if (state == PLAYER_STATE.NORMAL_ATTACK) {
         Player_NormalAttack();
     }
     else if (state == PLAYER_STATE.STAGGER) {
         Player_Stagger();
-        showHPBar = true;
     }
     else if (state == PLAYER_STATE.RUNNING) {
         sprite_index = spr_knight_running;

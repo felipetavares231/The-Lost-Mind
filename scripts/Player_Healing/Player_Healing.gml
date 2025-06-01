@@ -1,5 +1,5 @@
 function Player_Healing(){
-	if (healingPotions > 0) {
+	if (healingPotionCount > 0) {
 		if (!healingInitialized) {
 
 			animationTimer = 30;
@@ -12,11 +12,14 @@ function Player_Healing(){
 			animationTimer -= 1;
 			if(hp < max_hp){
 				hp += potionStrength
+                var healingIndicator = instance_create_depth(x+irandom(15), y+irandom(15), 0, obj_damageIndicator)
+                healingIndicator.color = choose(#61eb34, #a2f587, #28a300, #3fff00);
+                healingIndicator.damage = potionStrength;
 			}
 		} else {
 			state = PLAYER_STATE.IDLE;
 			healingInitialized = false;
-			healingPotions -= 1;
+			healingPotionCount -= 1;
 		}
 	}
 }
