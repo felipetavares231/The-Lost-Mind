@@ -62,7 +62,7 @@ damage = function(_damage, _knockback = 0) {
         var criticalHitIndicator = instance_create_depth(x, y, -1, obj_damageIndicator)
         
         criticalHitIndicator.color = c_fuchsia;
-        criticalHitIndicator.damage = _damage * 3;
+        criticalHitIndicator.damage = -_damage * 3;
         
         with(obj_camera){
             shake_time = 30
@@ -88,6 +88,6 @@ damage = function(_damage, _knockback = 0) {
     }
     
     var damageIndicator = instance_create_depth(x, y, -1, obj_damageIndicator)
-    damageIndicator.damage = _damage
+    damageIndicator.damage = -_damage
 	
 }

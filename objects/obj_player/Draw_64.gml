@@ -1,4 +1,4 @@
-
+//----------------HEALTH BAR-------------
 var margin_x = 32;
 var margin_y = 32;
 
@@ -39,6 +39,26 @@ draw_sprite_part(
     0, 0,
     staminafill_width, staminabar_height,
     margin_x, 50
+);
+
+//----------------------POWERATTACK----------
+var powerattackbar_width = sprite_get_width(spr_powerattackbarfill);
+var powerattackbar_height = sprite_get_height(spr_powerattackbarfill);
+
+displayed_powerattack = lerp(displayed_powerattack, powerAttackMultiplier * 100, 0.2);
+
+displayed_powerattack = clamp(displayed_powerattack, 0, max_powerattack);
+
+var powerattack_percent = displayed_powerattack / max_powerattack;
+
+draw_sprite(spr_powerattackbar, 0, margin_x, 75);
+
+var powerattackfill_width = bar_width * powerattack_percent;
+draw_sprite_part(
+    spr_powerattackbarfill, 0,
+    0, 0,
+    powerattackfill_width, powerattackbar_height,
+    margin_x, 75
 );
 
 //---------------------HEALTH POTINOS0-0000-----------

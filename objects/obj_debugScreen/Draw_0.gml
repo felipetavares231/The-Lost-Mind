@@ -22,6 +22,11 @@ if(showScreen){
     draw_text_transformed(hud_x, hud_y + line_height*6, $"Dodge Ready: {obj_player.canDodge}", scale, scale, 0);
     draw_text_transformed(hud_x, hud_y + line_height*7, $"X Speed: {obj_player.xsp}, Y Speed: {obj_player.ysp}", scale, scale, 0);
     draw_text_transformed(hud_x, hud_y + line_height*8, $"X: {obj_player.x}, Y: {obj_player.y}", scale, scale, 0);
+    draw_text_transformed(hud_x, hud_y + line_height*9, $"powerAttackMultiplier: {obj_player.powerAttackMultiplier}", scale, scale, 0);
+    draw_text_transformed(hud_x, hud_y + line_height*10, $"STATE: {obj_player.state}", scale, scale, 0);
+    draw_text_transformed(hud_x, hud_y + line_height*11, $"powerAttackInitialized: {obj_player.powerAttackInitialized}", scale, scale, 0);
+    draw_text_transformed(hud_x, hud_y + line_height*12, $"normalAttackInitialized: {obj_player.normalAttackInitialized}", scale, scale, 0);
+    
 }
 
 

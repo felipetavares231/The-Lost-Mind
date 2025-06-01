@@ -18,6 +18,15 @@ staminaDecreaseFactor = 100;
 staminaIncreaseFactor = 50;
 staminaCooldown = 30;
 
+
+powerAttackMultiplier = 0;
+powerAttackInitialized = false;
+powerAttackRequirement = 3;
+max_powerattack = powerAttackRequirement * 100;
+powerAttack = powerAttackMultiplier * 100;
+displayed_powerattack = max_powerattack * 100; 
+
+
 showHPBar = false;
 alarm[1] = 180; //alarm to disable hp bar
 
@@ -36,6 +45,7 @@ enum PLAYER_STATE {
 	DODGING,
 	HEALING,
     DEAD,
+    POWER_ATTACK,
 }
 
 state = PLAYER_STATE.IDLE
@@ -55,9 +65,12 @@ dodgeCooldown = 60;
 deathInitialized = false;
 
 damage = function(_damage, _knockback = 10) {
-	if(state != PLAYER_STATE.DODGING){
+	if(state != PLAYER_STATE.DODGING && state != PLAYER_STATE.POWER_ATTACK){
 		hp -= _damage;
 		state = PLAYER_STATE.STAGGER
+        
+        powerAttackMultiplier = 0;
+        
         var distanceToWall = distance_to_object(obj_wall)
     
         if(image_xscale > 0){
@@ -79,6 +92,35 @@ damage = function(_damage, _knockback = 10) {
         damageIndicator.damage = _damage
 	}
 }
+
+horizontalCollision = function () {
+    if (place_meeting(x + xsp, y, obj_wall)){
+        
+        var _pixelCheck = sign(xsp);
+        
+        show_debug_message(xsp)
+    
+        while (!(place_meeting(x + _pixelCheck, y, obj_wall))){
+            x += _pixelCheck
+        }
+        
+        xsp = 0;
+    }
+}
+
+verticalCollision = function (_xsp, _ysp){
+    if(place_meeting(x + _xsp, y + _ysp, obj_ground)){
+        var _pixelCheck = sign(_ysp);
+        
+        while(!place_meeting(x + _xsp, y + _pixelCheck, obj_ground)){
+            y += _pixelCheck;
+        }
+        
+        ysp = 0;
+        
+    }
+}
+
 
 alarm[0] = 1; //dodge timer;
 

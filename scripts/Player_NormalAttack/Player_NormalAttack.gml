@@ -21,7 +21,10 @@ function Player_NormalAttack(){
         if (attackTimer == attackFrame) {
             if (place_meeting(x + image_xscale * 16, y, obj_boss)) {
                 
-                obj_boss.damage(100)
+                obj_boss.damage(25)
+                obj_player.powerAttackMultiplier++;
+                obj_player.powerAttack = powerAttackMultiplier*100
+                
 				
 				with(obj_camera){
 					shake_time = 10

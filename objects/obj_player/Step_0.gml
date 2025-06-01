@@ -27,39 +27,27 @@ if(hp <= 0){
         room_restart()
     }
     
-    //horizontal collision
-    if (place_meeting(x + xsp, y, obj_wall)){
-        
-        var _pixelCheck = sign(xsp);
-        
-        show_debug_message(xsp)
+    horizontalCollision()
     
-        while (!(place_meeting(x + _pixelCheck, y, obj_wall))){
-            x += _pixelCheck
-        }
-        
-        xsp = 0;
-    }
+    verticalCollision(xsp, ysp);
     
-    if(place_meeting(x + xsp, y + ysp, obj_ground)){
-        var _pixelCheck = sign(ysp);
-        
-        while(!place_meeting(x + xsp, y + _pixelCheck, obj_ground)){
-            y += _pixelCheck;
-        }
-        
-        ysp = 0;
-        
+    if(keyboard_check(vk_f2)){ //TODO: remove this after debugging
+        powerAttackMultiplier = powerAttackRequirement
     }
     
     x += xsp;
     y += ysp;
     
-    if (leftKey && state != PLAYER_STATE.DODGING) {
+    
+    if (keyboard_check(ord("K")) && state != PLAYER_STATE.STAGGER && stamina > (max_stamina / 2) && powerAttackMultiplier >= powerAttackRequirement) {
+        state = PLAYER_STATE.POWER_ATTACK;
+    }
+    
+    if (leftKey && (state == PLAYER_STATE.IDLE || state == PLAYER_STATE.RUNNING)) {
         xsp = -moveSpd;
         image_xscale = -spriteSize;
         state = PLAYER_STATE.RUNNING;
-    }  else if (rightKey && state != PLAYER_STATE.DODGING) {
+    }  else if (rightKey && (state == PLAYER_STATE.IDLE || state == PLAYER_STATE.RUNNING)) {
         xsp = moveSpd;
         image_xscale = spriteSize;
         state = PLAYER_STATE.RUNNING;
@@ -92,6 +80,9 @@ if(hp <= 0){
     }
     else if (state == PLAYER_STATE.NORMAL_ATTACK) {
         Player_NormalAttack();
+    }
+    else if (state == PLAYER_STATE.POWER_ATTACK) {
+        Player_PowerAttack();
     }
     else if (state == PLAYER_STATE.STAGGER) {
         Player_Stagger();
