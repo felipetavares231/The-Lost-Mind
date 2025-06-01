@@ -11,6 +11,7 @@ function Player_NormalAttack(){
 		show_debug_message("Sprite name: " + sprite_get_name(sprite_index));
 
         normalAttackInitialized = true;
+        stamina -= staminaDecreaseFactor;
     }
 
     if (attackTimer > 0) {

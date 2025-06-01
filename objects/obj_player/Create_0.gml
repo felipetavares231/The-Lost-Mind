@@ -1,13 +1,22 @@
+display_set_gui_size(500, 500)
+
 spriteSize = 2
 
 image_xscale = spriteSize;
 image_yscale = spriteSize;
 
 max_hp = 300;      // maximum HP capacity
-hp = 300;          // current HP
+hp = max_hp;          // current HP
 displayed_hp = 300; //for smooth drain
 bar_max_width = max_hp * 0.6;  // 0.6 pixels per HP max, adjust as needed// max width of the HP bar on screen (pixels)
 bar_height = 10;     // height of the HP bar (pixels)
+
+max_stamina = 600;
+stamina = max_stamina;
+displayed_stamina = 600; //for smooth drain
+staminaDecreaseFactor = 100;
+staminaIncreaseFactor = 50;
+staminaCooldown = 30;
 
 showHPBar = false;
 alarm[1] = 180; //alarm to disable hp bar
@@ -71,4 +80,6 @@ damage = function(_damage, _knockback = 10) {
 	}
 }
 
-alarm[0] = 1;
+alarm[0] = 1; //dodge timer;
+
+alarm[1] = 1; //stamina timer;

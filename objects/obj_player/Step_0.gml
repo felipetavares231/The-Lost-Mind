@@ -14,12 +14,6 @@ if(hp <= 0){
     var leftKey = keyboard_check(ord("A"));
     var jumpKeyPressed = keyboard_check_pressed(ord("W"));
     
-    //TEMPORARY DEBUGGER KEY
-    
-    if(keyboard_check(vk_f3)){
-        instance_create_depth(x, y, 0, obj_damageIndicator)
-    }
-    
     
     //movement and collision
     xsp = (rightKey - leftKey) * moveSpd
@@ -79,7 +73,7 @@ if(hp <= 0){
     }
     
     // ========== ACTION INPUT ==========
-    if (keyboard_check(ord("J")) && state != PLAYER_STATE.STAGGER) {
+    if (keyboard_check(ord("J")) && state != PLAYER_STATE.STAGGER && stamina > 100) {
         state = PLAYER_STATE.NORMAL_ATTACK;
     }
     
